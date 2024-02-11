@@ -10,13 +10,17 @@ export default function AuthContextProvider({ children }) {
 
   const register = async (userData) => {
     const res = await userApi.register(userData);
-    setAuthUser(res.data.newUser);
+    setAuthUser(res.data.user);
     localStorage.storeToken(res.data.token);
-    console.log(userData);
-    console.log(res.data);
+  };
+
+  const login = async (userData) => {
+    const res = await userApi.login(userData);
+    setAuthUser(res.data.user);
+    localStorage.storeToken(res.data.token);
   };
   return (
-    <AuthContext.Provider value={{ register, authUser }}>
+    <AuthContext.Provider value={{ register, login, authUser }}>
       {children}
     </AuthContext.Provider>
   );

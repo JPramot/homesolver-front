@@ -8,6 +8,7 @@ export default function GuestMenu() {
     <div>
       <Header>
         <SignUpContainer />
+        <SignInContainer />
       </Header>
     </div>
   );
