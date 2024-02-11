@@ -1,5 +1,5 @@
-import Container from "../layouts/Container";
+import GuestMenu from "../layouts/GuestMenu";
 
 export default function Homepage() {
-  return <Container />;
+  return <GuestMenu />;
 }

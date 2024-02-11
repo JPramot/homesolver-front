@@ -4,14 +4,19 @@ import UserPage from "../pages/UserPage";
 import AdminPage from "../pages/AdminPage";
 import ProfilePage from "../pages/ProfilePage";
 import PostPage from "../pages/PostPage";
+import RedirectIfAuthen from "../features/auth/components/RedirectIfAuthen";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Homepage />,
+    element: (
+      <RedirectIfAuthen>
+        <Homepage />,
+      </RedirectIfAuthen>
+    ),
   },
   {
-    path: "/user",
+    path: "/home",
     element: <UserPage />,
   },
   {
@@ -19,11 +24,11 @@ const router = createBrowserRouter([
     element: <AdminPage />,
   },
   {
-    path: "/profile",
+    path: "/profile:userId",
     element: <ProfilePage />,
   },
   {
-    path: "/post",
+    path: "/post/:postId",
     element: <PostPage />,
   },
 ]);
