@@ -5,6 +5,7 @@ import AdminPage from "../pages/AdminPage";
 import ProfilePage from "../pages/ProfilePage";
 import PostPage from "../pages/PostPage";
 import RedirectIfAuthen from "../features/auth/components/RedirectIfAuthen";
+import ProtectRoute from "../features/auth/components/ProtectRoute";
 
 const router = createBrowserRouter([
   {
@@ -15,13 +16,22 @@ const router = createBrowserRouter([
       </RedirectIfAuthen>
     ),
   },
-  {
-    path: "/home",
-    element: <UserPage />,
-  },
+
   {
     path: "/admin",
-    element: <AdminPage />,
+    element: (
+      <ProtectRoute>
+        <AdminPage />,
+      </ProtectRoute>
+    ),
+  },
+  {
+    path: "/home",
+    element: (
+      <ProtectRoute>
+        <UserPage />
+      </ProtectRoute>
+    ),
   },
   {
     path: "/profile/:userId",
@@ -30,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/post/:postId",
     element: <PostPage />,
+  },
+  {
+    path: "*",
+    element: <Homepage />,
   },
 ]);
 
