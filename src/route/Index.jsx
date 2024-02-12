@@ -6,10 +6,12 @@ import ProfilePage from "../pages/ProfilePage";
 import PostPage from "../pages/PostPage";
 import RedirectIfAuthen from "../features/auth/components/RedirectIfAuthen";
 import ProtectRoute from "../features/auth/components/ProtectRoute";
+import Spinner from "../components/Spinner";
 
 const router = createBrowserRouter([
+  { path: "/spinner", element: <Spinner /> },
   {
-    path: "/",
+    path: "/home",
     element: (
       <RedirectIfAuthen>
         <Homepage />,
@@ -20,13 +22,13 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <ProtectRoute>
-        <AdminPage />,
-      </ProtectRoute>
+      // <ProtectRoute>
+      <AdminPage />
+      // </ProtectRoute>
     ),
   },
   {
-    path: "/home",
+    path: "/user",
     element: (
       <ProtectRoute>
         <UserPage />
@@ -43,7 +45,11 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <Homepage />,
+    element: (
+      <RedirectIfAuthen>
+        <Homepage />
+      </RedirectIfAuthen>
+    ),
   },
 ]);
 

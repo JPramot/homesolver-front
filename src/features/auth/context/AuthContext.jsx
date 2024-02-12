@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 import * as userApi from "../../../apis/auth";
 import * as localStorage from "../../../utilitys/local-storage";
@@ -7,6 +8,26 @@ export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
   const [authUser, setAuthUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (localStorage.getToken()) {
+      const fetchMe = async () => {
+        try {
+          const res = await userApi.getMe();
+          console.log(res.data.user);
+          setAuthUser(res.data.user);
+        } catch (err) {
+          console.log(err);
+          // toast.error("log in fail");
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchMe();
+    }
+    setLoading(false);
+  }, []);
 
   const register = async (userData) => {
     const res = await userApi.register(userData);
@@ -20,7 +41,7 @@ export default function AuthContextProvider({ children }) {
     localStorage.storeToken(res.data.token);
   };
   return (
-    <AuthContext.Provider value={{ register, login, authUser }}>
+    <AuthContext.Provider value={{ register, login, authUser, loading }}>
       {children}
     </AuthContext.Provider>
   );
