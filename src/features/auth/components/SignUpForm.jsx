@@ -87,7 +87,7 @@ export default function SignUpForm({ closeModal }) {
         </div>
         <div className="w-[80%] mx-auto pb-6">
           <Button bg={"second"} width={"full"}>
-            Sign in
+            Register
           </Button>
         </div>
       </div>

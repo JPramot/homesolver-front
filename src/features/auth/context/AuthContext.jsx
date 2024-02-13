@@ -40,8 +40,14 @@ export default function AuthContextProvider({ children }) {
     setAuthUser(res.data.user);
     localStorage.storeToken(res.data.token);
   };
+  const logout = () => {
+    setAuthUser(null);
+    localStorage.removeToken();
+  };
   return (
-    <AuthContext.Provider value={{ register, login, authUser, loading }}>
+    <AuthContext.Provider
+      value={{ register, login, logout, authUser, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );

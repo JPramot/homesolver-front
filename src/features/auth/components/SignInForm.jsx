@@ -31,7 +31,7 @@ export default function SignInForm({ closeModal }) {
     <form onSubmit={handleSubmit}>
       <div>
         <Input
-          label="username"
+          label="usernameLogin"
           name="username"
           placeholder="username"
           value={input.username}
@@ -41,7 +41,7 @@ export default function SignInForm({ closeModal }) {
       </div>
       <div>
         <Input
-          label="password"
+          label="passwordLogin"
           name="password"
           placeholder="password"
           value={input.password}

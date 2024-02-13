@@ -14,7 +14,12 @@ export default function SignInContainer() {
         Sign in
       </Button>
       {open && (
-        <Modal onClose={() => setOpen(false)} title="Sign in" width={25}>
+        <Modal
+          onClose={() => setOpen(false)}
+          title="Sign in"
+          width={25}
+          color="main"
+        >
           <SignInForm closeModal={closeModal} />
         </Modal>
       )}

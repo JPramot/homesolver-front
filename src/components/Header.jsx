@@ -13,8 +13,7 @@ export default function Header({ children }) {
           <input className="w-96 p-1" type="text" />
         </div>
       </div>
-      <div className="flex gap-4">{children}</div>
-      {/* <Modal /> */}
+      <div className="flex gap-10">{children}</div>
     </div>
   );
 }

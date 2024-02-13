@@ -1,13 +1,9 @@
+import UseAuth from "../hook/use-auth";
+
 export default function AdminPage() {
+  const { authUser } = UseAuth();
   return (
-    <div className="bg-black">
-      <div>Hello</div>
-      <div>Hello</div>
-      <div>Hello</div>
-      <div>Hello</div>
-      <div>Hello</div>
-      <div>Hello</div>
-      <div>Hello</div>
+    <div>
       <div>Hello</div>
     </div>
   );
