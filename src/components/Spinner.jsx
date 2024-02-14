@@ -1,7 +1,6 @@
 import { FaSpinner } from "react-icons/fa6";
 
 export default function Spinner() {
-  console.log("Spiner working");
   return (
     <>
       <div className="fixed bg-gray-500 opacity-15 inset-0"></div>
