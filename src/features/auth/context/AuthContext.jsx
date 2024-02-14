@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
 import * as userApi from "../../../apis/auth";
 import * as localStorage from "../../../utilitys/local-storage";
@@ -19,7 +18,6 @@ export default function AuthContextProvider({ children }) {
           setAuthUser(res.data.user);
         } catch (err) {
           console.log(err);
-          // toast.error("log in fail");
         } finally {
           setLoading(false);
         }

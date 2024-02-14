@@ -71,7 +71,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Homepage />,
+        element: (
+          <RedirectIfAuthen>
+            <Homepage />,
+          </RedirectIfAuthen>
+        ),
       },
       {
         path: "/login",
@@ -113,7 +117,9 @@ const router = createBrowserRouter([
     element: (
       <>
         <HeadContainer />
-        <Homepage />
+        <RedirectIfAuthen>
+          <Homepage />
+        </RedirectIfAuthen>
       </>
     ),
   },

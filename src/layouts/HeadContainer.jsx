@@ -15,11 +15,13 @@ export default function HeadContainer() {
   return (
     <div>
       <Header>
-        {authUser ? (
+        {authUser && authUser.role === "admin" ? (
+          <UserContainer />
+        ) : authUser ? (
           <UserContainer />
         ) : (
           <Link to="/login">
-            <Button bg="main">Log in | Register</Button>
+            <Button bg="main">Log in / Register</Button>
           </Link>
         )}
       </Header>

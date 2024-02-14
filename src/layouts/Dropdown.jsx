@@ -1,36 +1,35 @@
 import Avartar from "../components/Avartar";
-import { IoPerson } from "react-icons/io5";
-import { IoIosLogOut } from "react-icons/io";
-import SignOutContainer from "../features/auth/components/SignOutContainer";
-import UserProfile from "../features/user/components/UserProfile";
+import { useEffect, useRef, useState } from "react";
 
 export default function Dropdown({ children }) {
+  const [openDropdown, setOpenDropdown] = useState(false);
+
+  const dropdownEl = useRef(null);
+
+  useEffect(() => {
+    if (openDropdown) {
+      const outside = (e) => {
+        if (dropdownEl.current && !dropdownEl.current.contains(e.target))
+          setOpenDropdown(false);
+      };
+      document.addEventListener("mouseup", outside);
+      return () => document.removeEventListener("mouseup", outside);
+    }
+  }, [openDropdown]);
+
   return (
-    <div className="relative h-[80px]">
-      <div role="button">
+    <div className="relative h-[80px]" ref={dropdownEl}>
+      <div role="button" onClick={() => setOpenDropdown(!openDropdown)}>
         <Avartar size={5} />
       </div>
-      <div className="absolute right-0">
-        <div className="w-52  bg-white shadow-[0_0_6px_rgb(0,0,0,0.2)] p-2 rounded-lg">
-          {/* <div
-            className="flex  text-center gap-3 hover:bg-[#EDEDED] px-3 py-1.5 w-full mx-auto hover:text-[#A03232]"
-            role="button"
-          >
-            <IoPerson className="size-5 " />
-            <span>View My Profile</span>
-          </div> */}
-          {/* <div
-            className="flex  text-center gap-3 hover:bg-[#EDEDED] px-3 py-1.5 w-full mx-auto items-center hover:text-[#A03232]"
-            role="button"
-          >
-            <IoIosLogOut className="size-5" />
-            <span>Log out</span>
-          </div> */}
-          {/* <UserProfile />
-          <SignOutContainer /> */}
-          {children}
+
+      {openDropdown ? (
+        <div className="absolute right-0 translate-y-2 ">
+          <div className="w-52  bg-white shadow-[0_0_6px_rgb(0,0,0,0.2)] p-2 rounded-lg">
+            {children}
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }
