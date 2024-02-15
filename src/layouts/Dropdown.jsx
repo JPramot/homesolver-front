@@ -10,6 +10,7 @@ export default function Dropdown({ children }) {
       userProfile: { profileImage },
     },
   } = UseAuth();
+  console.log(profileImage);
 
   const dropdownEl = useRef(null);
 

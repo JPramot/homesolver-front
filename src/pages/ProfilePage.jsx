@@ -3,8 +3,8 @@ import UserContextProvider from "../features/user/context/UserContext";
 
 export default function ProfilePage() {
   return (
-    <UserContextProvider>
-      <UserProfile />
-    </UserContextProvider>
+    // <UserContextProvider>
+    <UserProfile />
+    // </UserContextProvider>
   );
 }

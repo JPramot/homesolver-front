@@ -7,9 +7,19 @@ import UseAuth from "../../../hook/use-auth";
 
 export default function UserProfile() {
   const {
-    authUser: { username },
+    authUser: {
+      userProfile: {
+        firstName,
+        lastName,
+        alias,
+        birthDate,
+        introduction,
+        profileImage,
+      },
+      username,
+    },
   } = UseAuth();
-  // console.log(authUser);
+  console.log("a");
   const [input, setInput] = useState({
     firstName: "",
     lastName: "",
@@ -42,7 +52,7 @@ export default function UserProfile() {
     <div className=" bg-[#A03232] w-[60%] mx-auto rounded-lg ">
       <div className="flex flex-col w-[80%] mx-auto my-8 ">
         <div className="font-bold text-4xl py-8 text-white">
-          <h1>{username} Profile</h1>
+          <h1>Profile</h1>
         </div>
         <div className="flex   mb-4 gap-20 w-[100%] mx-auto">
           <div>
