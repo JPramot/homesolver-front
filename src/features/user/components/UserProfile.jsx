@@ -25,10 +25,18 @@ export default function UserProfile() {
     const indexOfT = dateString.indexOf("T");
     newInput.birthDate = dateString.substring(0, indexOfT);
   }
-  console.log(newInput);
-  console.log(profileImg);
-  console.log(newInput.birthDate);
-  const [input, setInput] = useState(newInput);
+  const [input, setInput] = useState(
+    newInput !== null
+      ? newInput
+      : {
+          firstName: "",
+          lastName: "",
+          alias: "",
+          introduction: "",
+          birthDate: "",
+          gender: "",
+        }
+  );
   const [image, setImage] = useState(null);
   const [errorInput, setErrorInput] = useState("");
   const [loading, setLoading] = useState(false);

@@ -45,24 +45,34 @@ export default function AuthContextProvider({ children }) {
   console.log(authUser);
 
   const register = async (userData) => {
-    const res = await authApi.register(userData);
-    setAuthUser(res.data.user);
-    localStorage.storeToken(res.data.token);
+    try {
+      const res = await authApi.register(userData);
+      setAuthUser(res.data.user);
+      localStorage.storeToken(res.data.token);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const login = async (userData) => {
-    const res = await authApi.login(userData);
-    setAuthUser(res.data.user);
-    localStorage.storeToken(res.data.token);
+    try {
+      const res = await authApi.login(userData);
+      setAuthUser(res.data.user);
+      localStorage.storeToken(res.data.token);
+    } catch (err) {}
   };
   const logout = () => {
     setAuthUser(null);
     localStorage.removeToken();
   };
   const updateUserProfile = async (userProflle) => {
-    const res = await userApi.updateProfile(userProflle);
-    setAuthUser((cur) => ({ ...cur, userProfile: res.data.userProfile }));
-    console.log(authUser);
+    try {
+      const res = await userApi.updateProfile(userProflle);
+      setAuthUser((cur) => ({ ...cur, userProfile: res.data.userProfile }));
+      console.log(authUser);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

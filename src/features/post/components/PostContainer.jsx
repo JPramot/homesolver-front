@@ -5,6 +5,9 @@ import PostForm from "./PostForm";
 
 export default function PostContainer() {
   const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <>
       <div className="my-auto">
@@ -20,7 +23,7 @@ export default function PostContainer() {
           width={45}
           bg={"main"}
         >
-          <PostForm />
+          <PostForm onClose={handleClose} />
         </Modal>
       )}
     </>

@@ -6,11 +6,8 @@ export default function Dropdown({ children }) {
   const [openDropdown, setOpenDropdown] = useState(false);
 
   const {
-    authUser: {
-      userProfile: { profileImage },
-    },
+    authUser: { userProfile },
   } = UseAuth();
-  console.log(profileImage);
 
   const dropdownEl = useRef(null);
 
@@ -25,15 +22,22 @@ export default function Dropdown({ children }) {
     }
   }, [openDropdown]);
 
+  const handleCloseDropdown = () => {
+    setOpenDropdown(false);
+  };
+
   return (
     <div className="relative h-[80px]" ref={dropdownEl}>
       <div role="button" onClick={() => setOpenDropdown(!openDropdown)}>
-        <Avartar size={5} src={profileImage} />
+        <Avartar size={5} src={userProfile?.profileImage} />
       </div>
 
       {openDropdown ? (
         <div className="absolute right-0 translate-y-2 ">
-          <div className="w-52  bg-white shadow-[0_0_6px_rgb(0,0,0,0.2)] p-2 rounded-lg">
+          <div
+            className="w-52  bg-white shadow-[0_0_6px_rgb(0,0,0,0.2)] p-2 rounded-lg"
+            onClick={handleCloseDropdown}
+          >
             {children}
           </div>
         </div>

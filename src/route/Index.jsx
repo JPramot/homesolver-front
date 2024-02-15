@@ -10,6 +10,7 @@ import HeadContainer from "../layouts/HeadContainer";
 import ProtectAdminRoute from "../features/auth/components/ProtectAdminRoute";
 import LoginPage from "../pages/LoginPage";
 import RedirectIfNotAuthen from "../features/auth/components/RedirectIfNotAuthen";
+import PostByUser from "../pages/PostByUser";
 
 // const router = createBrowserRouter([
 //   {
@@ -109,6 +110,14 @@ const router = createBrowserRouter([
           <RedirectIfNotAuthen>
             <ProfilePage />,
           </RedirectIfNotAuthen>
+        ),
+      },
+      {
+        path: "post/me/:userId",
+        element: (
+          // <RedirectIfNotAuthen>
+          <PostByUser />
+          // </RedirectIfNotAuthen>
         ),
       },
       {

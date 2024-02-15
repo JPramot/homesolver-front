@@ -6,10 +6,7 @@ import UseAuth from "../../../hook/use-auth";
 
 export default function UserDropDown() {
   const {
-    authUser: {
-      id,
-      userProfile: { profileImage },
-    },
+    authUser: { id },
   } = UseAuth();
   return (
     <>
@@ -22,7 +19,7 @@ export default function UserDropDown() {
           <span>My Profile</span>
         </div>
       </Link>
-      <Link to="/post">
+      <Link to={`/post/me/${id}`}>
         <div
           className="flex  text-center gap-3 hover:bg-[#EDEDED] px-3 py-1.5 w-full mx-auto hover:text-[#A03232]"
           role="button"

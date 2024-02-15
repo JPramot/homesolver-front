@@ -6,8 +6,9 @@ import { useRef, useState } from "react";
 import validatePost from "../validations/validate-post";
 import UsePost from "../../../hook/use-post";
 import Spinner from "../../../components/Spinner";
+import { toast } from "react-toastify";
 
-export default function PostForm() {
+export default function PostForm({ onClose }) {
   const [input, setInput] = useState({ title: "", content: "" });
   const [error, setError] = useState({});
   const [image, setImage] = useState(null);
@@ -29,24 +30,30 @@ export default function PostForm() {
 
       const validateInputError = validatePost(input);
       if (validateInputError) return setError(validateInputError);
-      console.log(image.length);
-      if (image.length > 5)
+      console.log(image?.length);
+      if (image?.length > 5)
         return setError((cur) => ({ ...cur, image: "the maximum image is 5" }));
       const formData = new FormData();
       if (input.title) formData.append("title", input.title);
       if (input.content) formData.append("content", input.content);
-      if (image.length > 0) {
+      if (image?.length > 0) {
         [...image].forEach((file) => {
           formData.append("image", file);
         });
       }
       setLoading(true);
-      const res = await createPost(formData);
+      await createPost(formData);
       // console.log(res);
+      toast.success("post success");
+      setInput({});
+      setImage(null);
+      onClose();
     } catch (err) {
       console.log(err);
+      toast.error("post fail");
     } finally {
-      setImage([]);
+      console.log("end");
+      // setImage([]);
       setLoading(false);
     }
   };
