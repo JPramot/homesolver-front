@@ -60,7 +60,9 @@ export default function AuthContextProvider({ children }) {
     localStorage.removeToken();
   };
   const updateUserProfile = async (userProflle) => {
-    const res = await userApi.updateUserProfile(userProflle);
+    const res = await userApi.updateProfile(userProflle);
+    setAuthUser((cur) => ({ ...cur, userProfile: res.data.userProfile }));
+    console.log(authUser);
   };
 
   return (

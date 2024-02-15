@@ -1,3 +1,3 @@
 import axios from "../config/axios";
 
-const updateProfile = (data) => axios.patch("/users", data);
+export const updateProfile = (data) => axios.patch("/users", data);
