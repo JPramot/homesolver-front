@@ -23,7 +23,7 @@ export default function Input({
   return (
     <div className="flex flex-col gap-1.5 w-[80%] mx-auto m-4">
       <label className={`${textColor} ${text}`} htmlFor={label}>
-        {name}{" "}
+        {name}
       </label>
       <input
         className={`${defaultClass} ${extendedClass}`}

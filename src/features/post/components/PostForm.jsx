@@ -29,8 +29,9 @@ export default function PostForm() {
 
       const validateInputError = validatePost(input);
       if (validateInputError) return setError(validateInputError);
-      if (image.length > 4)
-        setError((cur) => ({ ...cur, image: "the maximum image is 5" }));
+      console.log(image.length);
+      if (image.length > 5)
+        return setError((cur) => ({ ...cur, image: "the maximum image is 5" }));
       const formData = new FormData();
       if (input.title) formData.append("title", input.title);
       if (input.content) formData.append("content", input.content);
@@ -45,7 +46,7 @@ export default function PostForm() {
     } catch (err) {
       console.log(err);
     } finally {
-      // setImage([]);
+      setImage([]);
       setLoading(false);
     }
   };
@@ -94,6 +95,12 @@ export default function PostForm() {
             </div>
             {error.image ? (
               <small className="text-red-500">{error.image}</small>
+            ) : image?.length > 0 && image?.length < 5 ? (
+              <small>you choose {image.length} image file</small>
+            ) : image?.length > 5 ? (
+              <small className="text-red-500">
+                the maximum of picture is 5 you choose {image.length}
+              </small>
             ) : (
               <small>the maximum of picture is 5</small>
             )}

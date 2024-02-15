@@ -10,8 +10,8 @@ export default function Modal({ children, onClose, title, width, color, bg }) {
   let bgClass = bg ? bgColor[bg] : "bg-white";
   return (
     <>
-      <div className="fixed bg-white inset-0 opacity-80"></div>
-      <div className="fixed inset-0">
+      <div className="fixed bg-white inset-0 opacity-80 z-20"></div>
+      <div className="fixed inset-0 z-30">
         <div className="flex items-center justify-center min-h-full py-8">
           <div
             className={`${bgClass}  rounded-lg shadow-[0_0_15px_rgb(0,0,0,0.2)]`}

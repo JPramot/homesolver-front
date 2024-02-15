@@ -1,8 +1,15 @@
 import Avartar from "../components/Avartar";
 import { useEffect, useRef, useState } from "react";
+import UseAuth from "../hook/use-auth";
 
 export default function Dropdown({ children }) {
   const [openDropdown, setOpenDropdown] = useState(false);
+
+  const {
+    authUser: {
+      userProfile: { profileImage },
+    },
+  } = UseAuth();
 
   const dropdownEl = useRef(null);
 
@@ -20,7 +27,7 @@ export default function Dropdown({ children }) {
   return (
     <div className="relative h-[80px]" ref={dropdownEl}>
       <div role="button" onClick={() => setOpenDropdown(!openDropdown)}>
-        <Avartar size={5} />
+        <Avartar size={5} src={profileImage} />
       </div>
 
       {openDropdown ? (

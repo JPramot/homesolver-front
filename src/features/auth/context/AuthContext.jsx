@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 
-import * as userApi from "../../../apis/auth";
+import * as authApi from "../../../apis/auth";
 import * as localStorage from "../../../utilitys/local-storage";
+import * as userApi from "../../../apis/user";
 
 export const AuthContext = createContext();
 
@@ -13,7 +14,7 @@ export default function AuthContextProvider({ children }) {
     if (localStorage.getToken()) {
       const fetchMe = async () => {
         try {
-          const res = await userApi.getMe();
+          const res = await authApi.getMe();
           console.log(res.data.user);
           setAuthUser(res.data.user);
         } catch (err) {
@@ -28,13 +29,13 @@ export default function AuthContextProvider({ children }) {
   }, []);
 
   const register = async (userData) => {
-    const res = await userApi.register(userData);
+    const res = await authApi.register(userData);
     setAuthUser(res.data.user);
     localStorage.storeToken(res.data.token);
   };
 
   const login = async (userData) => {
-    const res = await userApi.login(userData);
+    const res = await authApi.login(userData);
     setAuthUser(res.data.user);
     localStorage.storeToken(res.data.token);
   };
@@ -42,9 +43,13 @@ export default function AuthContextProvider({ children }) {
     setAuthUser(null);
     localStorage.removeToken();
   };
+  const updateUserProfile = async (userProflle) => {
+    const res = await userApi.updateUserProfile(userProflle);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ register, login, logout, authUser, loading }}
+      value={{ register, login, logout, updateUserProfile, authUser, loading }}
     >
       {children}
     </AuthContext.Provider>
