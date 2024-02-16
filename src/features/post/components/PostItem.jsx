@@ -1,15 +1,21 @@
 import Avartar from "../../../components/Avartar";
 import { TfiCommentAlt } from "react-icons/tfi";
+import UseAuth from "../../../hook/use-auth";
+import PostActionForOwner from "./PostActionForOwner";
 
-export default function PostItem({ post }) {
+export default function PostItem({ post, action }) {
+  const { authUser } = UseAuth();
   return (
     <div className="w-[90%] bg-white mx-auto rounded-md">
       <div className="flex flex-col gap-3 py-2">
-        <div
-          className="px-8 text-lg font-semibold hover:text-[#A03232] w-fit"
-          role="button"
-        >
-          <h1>{post.title}</h1>
+        <div className="flex justify-between">
+          <div
+            className="px-8 text-lg font-semibold hover:text-[#A03232] w-fit"
+            role="button"
+          >
+            <h1>{post.title}</h1>
+          </div>
+          <div>{action === "me" ? <PostActionForOwner /> : null}</div>
         </div>
         <div className="flex justify-between px-5 items-center font-light">
           <div className="flex gap-4">

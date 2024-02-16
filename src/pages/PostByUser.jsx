@@ -14,8 +14,8 @@ export default function PostByUser() {
         <div>
           <h1>My Posts</h1>
         </div>
-        <div className="bg-[#A03232] w-[80%] mx-auto rounded-lg p-5">
-          <PostList amount={page} userId={authUser?.id} />
+        <div className="bg-[#A03232] w-[70%] mx-auto rounded-lg p-5">
+          <PostList amount={page} userId={authUser?.id} action="me" />
         </div>
         <div
           className="w-[80%] mx-auto text-right hover:text-[#A03232]"

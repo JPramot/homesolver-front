@@ -1,7 +1,7 @@
 import PostItem from "./PostItem";
 import UsePost from "../../../hook/use-post";
 
-export default function PostList({ amount, userId }) {
+export default function PostList({ amount, userId, action }) {
   const { allPost } = UsePost();
   const seePost = allPost?.filter((el, idx) => {
     if (userId) {
@@ -12,7 +12,7 @@ export default function PostList({ amount, userId }) {
   return (
     <div className="flex flex-col gap-4">
       {seePost?.map((el) => (
-        <PostItem key={el.id} post={el} />
+        <PostItem key={el.id} post={el} action={action} />
       ))}
     </div>
   );
