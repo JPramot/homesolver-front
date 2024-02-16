@@ -95,7 +95,7 @@ export default function PostForm({ onClose }) {
         <div className="w-[80%] mx-auto my-4 flex flex-col gap-4">
           <div className="flex items-center gap-3">
             <div
-              className="flex gap-2 p-2 items-center w-44 bg-white hover:bg-gray-200"
+              className="flex gap-2 p-2 items-center w-44 bg-white hover:bg-gray-200 rounded-lg"
               role="button"
               onClick={() => fileImageEl.current.click()}
             >

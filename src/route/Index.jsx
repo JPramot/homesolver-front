@@ -115,13 +115,13 @@ const router = createBrowserRouter([
       {
         path: "post/me/:userId",
         element: (
-          // <RedirectIfNotAuthen>
-          <PostByUser />
-          // </RedirectIfNotAuthen>
+          <RedirectIfNotAuthen>
+            <PostByUser />
+          </RedirectIfNotAuthen>
         ),
       },
       {
-        path: "/post",
+        path: "/post/:postId/comment",
         element: <PostPage />,
       },
     ],

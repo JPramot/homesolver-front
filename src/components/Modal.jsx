@@ -20,7 +20,10 @@ export default function Modal({ children, onClose, title, width, color, bg }) {
             <div className="border-b flex justify-between p-4">
               <div className="text-2xl invisible">&#10005;</div>
               <h5 className={`text-3xl font-semibold ${classes}`}>{title}</h5>
-              <button className="text-2xl" onClick={onClose}>
+              <button
+                className="text-2xl  hover:font-bold hover:text-[#A03232]"
+                onClick={onClose}
+              >
                 &#10005;
               </button>
             </div>

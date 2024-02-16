@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import * as postApi from "../../../apis/post";
+import { useParams } from "react-router-dom";
 
 export const PostContext = createContext();
 
@@ -7,6 +8,7 @@ export default function PostContextProvider({ children }) {
   const [postByUser, setPostByUser] = useState({});
   const [allPost, setAllPost] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [postWithComment, setPostWithComment] = useState({});
 
   const createPost = async (input) => {
     try {
@@ -21,11 +23,16 @@ export default function PostContextProvider({ children }) {
   const getAllPosts = async () => {
     const res = await postApi.getPost();
     setAllPost(res.data.posts);
-    console.log(res.data.posts);
   };
   const deletePost = async (postId) => {
     await postApi.deletePost(postId);
     getAllPosts();
+  };
+
+  const getPostAndComment = async (postId) => {
+    const res = await postApi.getPostWithComment(postId);
+    setPostWithComment(res.data.post);
+    console.log(res?.data.post);
   };
 
   useEffect(() => {
@@ -38,9 +45,18 @@ export default function PostContextProvider({ children }) {
       setLoading(false);
     }
   }, [postByUser]);
+
   return (
     <PostContext.Provider
-      value={{ createPost, deletePost, allPost, postByUser, loading }}
+      value={{
+        createPost,
+        deletePost,
+        getPostAndComment,
+        allPost,
+        postByUser,
+        loading,
+        postWithComment,
+      }}
     >
       {children}
     </PostContext.Provider>

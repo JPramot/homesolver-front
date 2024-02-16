@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { GoKebabHorizontal } from "react-icons/go";
 import Modal from "../../../components/Modal";
 import DeletePostForm from "./DeletePostForm";
+import EditPostForm from "./EditPostForm";
 import UsePost from "../../../hook/use-post";
 
 export default function PostActionForOwner({ post }) {
@@ -50,9 +51,20 @@ export default function PostActionForOwner({ post }) {
               <div
                 role="button"
                 className="hover:bg-gray-200 hover:text-[#A03232]"
+                onClick={() => setOpenEditForm(true)}
               >
                 <h1>Edit Post</h1>
               </div>
+              {openEditForm && (
+                <Modal
+                  bg="main"
+                  title="Edit your post"
+                  onClose={() => setOpenEditForm(false)}
+                  width={45}
+                >
+                  <EditPostForm />
+                </Modal>
+              )}
               <div
                 role="button"
                 className="hover:bg-gray-200 hover:text-[#A03232]"
@@ -62,6 +74,8 @@ export default function PostActionForOwner({ post }) {
               </div>
               {openDeleteForm && (
                 <Modal
+                  bg="main"
+                  color="main"
                   title="Do you sure to delete this post?"
                   onClose={() => setOpenDeleteForm(false)}
                 >
