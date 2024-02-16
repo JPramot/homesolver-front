@@ -2,8 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { GoKebabHorizontal } from "react-icons/go";
 import Modal from "../../../components/Modal";
 import DeletePostForm from "./DeletePostForm";
+import UsePost from "../../../hook/use-post";
 
-export default function PostActionForOwner() {
+export default function PostActionForOwner({ post }) {
+  const { deletePost } = UsePost();
+
   const [openDropdown, setOpenDropdown] = useState(false);
   const [openDeleteForm, setOpenDeleteForm] = useState(false);
   const [openEditForm, setOpenEditForm] = useState(false);
@@ -24,6 +27,13 @@ export default function PostActionForOwner() {
   const handleCloseDropdown = () => {
     setOpenDropdown(false);
   };
+
+  const handleDeletePost = async () => {
+    try {
+      await deletePost(post.id);
+    } catch (err) {}
+  };
+
   return (
     <div ref={dropdownEl}>
       <div
@@ -55,7 +65,12 @@ export default function PostActionForOwner() {
                   title="Do you sure to delete this post?"
                   onClose={() => setOpenDeleteForm(false)}
                 >
-                  <DeletePostForm onClose={() => setOpenDeleteForm(false)} />
+                  <DeletePostForm
+                    onClose={() => (
+                      setOpenDeleteForm(false), setOpenDropdown(false)
+                    )}
+                    onDelete={handleDeletePost}
+                  />
                 </Modal>
               )}
             </div>

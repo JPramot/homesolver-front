@@ -18,14 +18,19 @@ export default function PostContextProvider({ children }) {
     }
   };
 
+  const getAllPosts = async () => {
+    const res = await postApi.getPost();
+    setAllPost(res.data.posts);
+    console.log(res.data.posts);
+  };
+  const deletePost = async (postId) => {
+    await postApi.deletePost(postId);
+    getAllPosts();
+  };
+
   useEffect(() => {
     try {
       setLoading(true);
-      const getAllPosts = async () => {
-        const res = await postApi.getPost();
-        setAllPost(res.data.posts);
-        console.log(res.data.posts);
-      };
       getAllPosts();
     } catch (err) {
       console.log(err);
@@ -34,7 +39,9 @@ export default function PostContextProvider({ children }) {
     }
   }, [postByUser]);
   return (
-    <PostContext.Provider value={{ createPost, allPost, postByUser, loading }}>
+    <PostContext.Provider
+      value={{ createPost, deletePost, allPost, postByUser, loading }}
+    >
       {children}
     </PostContext.Provider>
   );
