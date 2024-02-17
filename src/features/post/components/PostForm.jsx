@@ -114,7 +114,7 @@ export default function PostForm({ onClose }) {
               <small>the maximum of picture is 5</small>
             )}
           </div>
-          <Button width={"full"} bg={"second"}>
+          <Button width={"full"} bg={"second"} type="submit">
             Post
           </Button>
         </div>

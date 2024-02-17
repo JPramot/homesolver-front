@@ -22,7 +22,7 @@ export default function PostItem({ post, action }) {
               role="button"
               onClick={handleGetPostWithComment}
             >
-              <h1>{post.title}</h1>
+              <h1>{post?.title}</h1>
             </div>
           </Link>
           <div>
@@ -32,10 +32,10 @@ export default function PostItem({ post, action }) {
         <div className="flex justify-between px-5 items-center font-light">
           <div className="flex gap-4">
             <div>
-              <Avartar size={3} src={post.user?.userProfile.profileImage} />
+              <Avartar size={3} src={post.user?.userProfile?.profileImage} />
             </div>
             <div>
-              <h1>{post.user.userProfile.alias}</h1>
+              <h1>{post?.user?.userProfile?.alias}</h1>
               <h1>{formatTimeAgo(post?.createdAt)}</h1>
             </div>
           </div>

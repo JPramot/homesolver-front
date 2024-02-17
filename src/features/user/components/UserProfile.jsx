@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import UseAuth from "../../../hook/use-auth";
 import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner";
+import isUserProfileChange from "../validations/validate-userProfileChange";
 
 export default function UserProfile() {
   const {
@@ -26,7 +27,7 @@ export default function UserProfile() {
     newInput.birthDate = dateString.substring(0, indexOfT);
   }
   const [input, setInput] = useState(
-    newInput !== null
+    JSON.stringify(newInput) !== "{}"
       ? newInput
       : {
           firstName: "",
@@ -60,6 +61,8 @@ export default function UserProfile() {
       ) {
         setErrorInput("Please fill at least one of your profile infomation");
       }
+      if (!isUserProfileChange(userProfile, input) && !image)
+        return toast.error("no profile data change");
       const formData = new FormData();
       if (input.firstName) formData.append("firstName", input.firstName);
       if (input.lastName) formData.append("lastName", input.lastName);
@@ -70,7 +73,7 @@ export default function UserProfile() {
         formData.append("introduction", input.introduction);
       if (image) formData.append("profileImage", image);
       setLoading(true);
-      const res = await updateUserProfile(formData);
+      await updateUserProfile(formData);
 
       toast.success("update profile success");
     } catch (err) {
@@ -81,7 +84,7 @@ export default function UserProfile() {
     }
   };
   const handleCancel = (e) => {
-    // e.stopPropagation();
+    e.stopPropagation();
     setImage(null);
     setInput(newInput);
   };
@@ -196,8 +199,10 @@ export default function UserProfile() {
                 <small className="text-red-500">{errorInput}</small>
               )}
               <div className="w-[80%] mx-auto flex justify-end my-4 gap-4">
-                <Button bg="second">Edit profile</Button>
-                <Button bg="second" onClick={handleCancel} type="button">
+                <Button bg="second" type="submit">
+                  Edit profile
+                </Button>
+                <Button bg="second" onClick={handleCancel}>
                   Cancel
                 </Button>
               </div>

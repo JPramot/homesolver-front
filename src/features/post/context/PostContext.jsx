@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import * as postApi from "../../../apis/post";
-import { useParams } from "react-router-dom";
 
 export const PostContext = createContext();
 
@@ -32,7 +31,6 @@ export default function PostContextProvider({ children }) {
   const getPostAndComment = async (postId) => {
     const res = await postApi.getPostWithComment(postId);
     setPostWithComment(res.data.post);
-    console.log(res?.data.post);
   };
 
   useEffect(() => {

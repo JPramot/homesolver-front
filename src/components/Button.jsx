@@ -8,7 +8,13 @@ const widthClass = {
   full: "w-full",
 };
 
-export default function Button({ bg, onClick, children, width }) {
+export default function Button({
+  bg,
+  onClick,
+  children,
+  width,
+  type = "button",
+}) {
   let classes = bg ? colorClass[bg] : "";
   classes += width ? " " + widthClass[width] : "";
   return (
@@ -16,6 +22,7 @@ export default function Button({ bg, onClick, children, width }) {
       <button
         className={`${classes} min-w-24 px-4 py-2 rounded-md`}
         onClick={onClick}
+        type={type}
       >
         {children}
       </button>

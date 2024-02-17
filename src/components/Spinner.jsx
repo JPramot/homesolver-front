@@ -1,7 +1,7 @@
 import { FaSpinner } from "react-icons/fa6";
 
 export default function Spinner() {
-  console.log("spinner");
+  console.log("spin");
   return (
     <>
       <div className="fixed bg-gray-500 opacity-15 inset-0"></div>
@@ -10,10 +10,6 @@ export default function Spinner() {
           <FaSpinner className="size-20 fill-[#A03232] animate-spin" />
         </div>
       </div>
-
-      {/* <h1>Hello</h1>
-      <h1>Hello</h1>
-      <h1>Hello</h1> */}
     </>
   );
 }

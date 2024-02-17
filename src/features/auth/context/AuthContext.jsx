@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import * as authApi from "../../../apis/auth";
 import * as localStorage from "../../../utilitys/local-storage";
 import * as userApi from "../../../apis/user";
+import { Navigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -64,6 +65,7 @@ export default function AuthContextProvider({ children }) {
   const logout = () => {
     setAuthUser(null);
     localStorage.removeToken();
+    <Navigate to="/home" />;
   };
   const updateUserProfile = async (userProflle) => {
     try {

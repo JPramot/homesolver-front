@@ -50,7 +50,7 @@ export default function SignInForm({ closeModal }) {
         />
       </div>
       <div className="w-[80%] mx-auto pb-6">
-        <Button bg={"second"} width={"full"}>
+        <Button bg={"second"} width={"full"} type="submin">
           Log in
         </Button>
       </div>
