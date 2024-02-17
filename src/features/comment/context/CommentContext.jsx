@@ -15,8 +15,18 @@ export default function CommentContextProvider({ children }) {
     }
   };
 
+  const deleteComment = async (commentId, postId) => {
+    try {
+      await commentApi.deleteComment(commentId, postId);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <CommentContext.Provider value={{ createComment, commentByUser }}>
+    <CommentContext.Provider
+      value={{ createComment, deleteComment, commentByUser }}
+    >
       {children}
     </CommentContext.Provider>
   );
