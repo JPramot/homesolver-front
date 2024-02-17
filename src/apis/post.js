@@ -8,3 +8,6 @@ export const deletePost = (postId) => axios.delete(`/posts/${postId}`);
 
 export const getPostWithComment = (postId) =>
   axios.get(`/posts/${postId}/comment`);
+
+export const appealPost = (data, postId) =>
+  axios.post(`/posts/${postId}/appeal`, data);

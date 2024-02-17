@@ -19,7 +19,8 @@ export default function SignInForm({ closeModal }) {
       e.preventDefault();
       const validateLoginError = validateLogin(input);
       if (validateLoginError) return setError(validateLoginError);
-      await login(input);
+      const res = await login(input);
+      console.log(res);
       toast.success("login success");
       // closeModal();
     } catch (err) {

@@ -1,6 +1,3 @@
-import { IoTrashBin } from "react-icons/io5";
-import Avartar from "../../../components/Avartar";
-import { useState } from "react";
 import UseComment from "../../../hook/use-comment";
 import CommentItem from "./CommentItem";
 
@@ -12,7 +9,7 @@ export default function CommentList({ comment }) {
   if (commentByUser) allComment = [...comment, commentByUser];
   return (
     <>
-      {allComment.map((el, idx) => (
+      {comment.map((el, idx) => (
         <CommentItem key={el.id} comment={el} idx={idx} />
       ))}
     </>

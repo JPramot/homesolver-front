@@ -10,13 +10,9 @@ export default function PostContextProvider({ children }) {
   const [postWithComment, setPostWithComment] = useState({});
 
   const createPost = async (input) => {
-    try {
-      const res = await postApi.createPost(input);
-      setPostByUser(res.data.post);
-      setAllPost([postByUser, ...allPost]);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await postApi.createPost(input);
+    setPostByUser(res.data.post);
+    setAllPost([postByUser, ...allPost]);
   };
 
   const getAllPosts = async () => {
@@ -31,6 +27,10 @@ export default function PostContextProvider({ children }) {
   const getPostAndComment = async (postId) => {
     const res = await postApi.getPostWithComment(postId);
     setPostWithComment(res.data.post);
+  };
+
+  const appealPost = async (data, postId) => {
+    await postApi.appealPost(data, postId);
   };
 
   useEffect(() => {
@@ -50,6 +50,8 @@ export default function PostContextProvider({ children }) {
         createPost,
         deletePost,
         getPostAndComment,
+        appealPost,
+        getAllPosts,
         allPost,
         postByUser,
         loading,

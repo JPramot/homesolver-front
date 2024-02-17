@@ -4,10 +4,12 @@ import Button from "../../../components/Button";
 import UseAuth from "../../../hook/use-auth";
 import { toast } from "react-toastify";
 import UseComment from "../../../hook/use-comment";
+import UsePost from "../../../hook/use-post";
 
 export default function CommentForm({ postId }) {
   const { authUser } = UseAuth();
   const { createComment } = UseComment();
+  const { getPostAndComment, getAllPosts } = UsePost();
 
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
@@ -15,9 +17,12 @@ export default function CommentForm({ postId }) {
   const handleComment = async () => {
     try {
       console.log(postId);
-      if (input.trim() === "") setError("please comment something");
+      if (input.trim() == "") return setError("please comment something");
       await createComment({ content: input }, postId);
+      setInput("");
+      await getPostAndComment(postId);
       toast.success("comment success");
+      await getAllPosts();
     } catch (err) {
       console.log(err);
       toast.error("comment fail");
@@ -28,18 +33,22 @@ export default function CommentForm({ postId }) {
     <div>
       <div>
         <textarea
-          className="w-full rounded-lg resize-none outline-none focus:border-4 focus:border-[#A03232] p-3"
+          className="w-full rounded-lg resize-none outline-none focus:border-4 focus:border-[#A03232] p-3 mb-2"
           name="content"
           cols="30"
           rows="10"
           onChange={(e) => (setInput(e.target.value), setError(""))}
           value={input}
         ></textarea>
-        {error && <small className="text-red-500">{error}</small>}
+        {error && (
+          <small className="text-red-500 bg-white p-2 rounded-md">
+            {error}
+          </small>
+        )}
         <div className="flex justify-end gap-4 items-center my-4">
           <Avartar size="3" src={authUser?.userProfile?.profileImage} />
           <h1>{authUser?.userProfile?.alias || "Unknown"}</h1>
-          <Button bg="main" onClick={() => setInput("")}>
+          <Button bg="main" onClick={() => (setInput(""), setError(""))}>
             Cancel
           </Button>
           <Button bg="main" onClick={handleComment}>

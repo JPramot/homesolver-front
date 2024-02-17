@@ -11,9 +11,13 @@ export default function PostList({ amount, userId, action }) {
   });
   return (
     <div className="flex flex-col gap-4">
-      {seePost?.map((el) => (
-        <PostItem key={el.id} post={el} action={action} />
-      ))}
+      {seePost?.length > 0 ? (
+        seePost?.map((el) => <PostItem key={el.id} post={el} action={action} />)
+      ) : (
+        <div className="w-[90%] bg-white mx-auto rounded-md text-center text-[#A03232] text-xl font-semibold py-3">
+          <h1>You never post let's post now</h1>
+        </div>
+      )}
     </div>
   );
 }

@@ -44,17 +44,14 @@ export default function PostForm({ onClose }) {
       console.log(image);
       setLoading(true);
       await createPost(formData);
-      // console.log(res);
       toast.success("post success");
       setInput({});
       setImage(null);
-      // setLoading(false);
     } catch (err) {
       console.log(err);
       toast.error("post fail");
     } finally {
       console.log("end");
-      // setImage([]);
       setLoading(false);
       onClose();
     }

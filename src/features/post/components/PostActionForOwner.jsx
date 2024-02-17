@@ -25,9 +25,9 @@ export default function PostActionForOwner({ post }) {
     }
   }, [openDropdown]);
 
-  const handleCloseDropdown = () => {
-    setOpenDropdown(false);
-  };
+  // const handleCloseDropdown = () => {
+  //   setOpenDropdown(false);
+  // };
 
   const handleDeletePost = async () => {
     try {

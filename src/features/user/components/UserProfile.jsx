@@ -50,6 +50,8 @@ export default function UserProfile() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      console.log(userProfile);
+      console.log(input);
       if (
         !input.firstName &&
         !input.lastName &&

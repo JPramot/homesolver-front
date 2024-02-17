@@ -2,16 +2,42 @@ import { BsBan } from "react-icons/bs";
 import Avartar from "../../../components/Avartar";
 import ImageList from "./ImageList";
 import formatTimeAgo from "../../../utilitys/time-ago";
+import { useEffect, useRef, useState } from "react";
+import Modal from "../../../components/Modal";
+import AppealPostForm from "./AppealPostForm";
 
 function SelectedPost({ post }) {
+  const [openModal, setOpenModal] = useState(false);
+
+  const dropdownEl = useRef(null);
+
   return (
-    <div className=" bg-white border-2 border-[#A03232] px-10 py-6 flex flex-col gap-3 rounded-lg ">
+    <div
+      className=" bg-white border-2 border-[#A03232] px-10 py-6 flex flex-col gap-3 rounded-lg "
+      ref={dropdownEl}
+    >
       <div className="flex justify-between items-center ">
         <h1 className="text-2xl font-semibold ">{post?.title}</h1>
-        <BsBan
-          className="size-5 hover:fill-[#A03232] hover:bg-gray-100 "
-          role="button"
-        />
+        <div>
+          <BsBan
+            className="size-5 hover:fill-[#A03232] hover:bg-gray-100 "
+            role="button"
+            onClick={() => setOpenModal(true)}
+          />
+          {openModal && (
+            <Modal
+              title="What wrong with this post?"
+              width={30}
+              onClose={() => setOpenModal(false)}
+              color="main"
+            >
+              <AppealPostForm
+                onClose={() => setOpenModal(false)}
+                postId={post?.id}
+              />
+            </Modal>
+          )}
+        </div>
       </div>
       <div className="mb-8">
         <h1 className="text-lg font-light">{post?.content}</h1>
