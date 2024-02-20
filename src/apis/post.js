@@ -11,3 +11,5 @@ export const getPostWithComment = (postId) =>
 
 export const appealPost = (data, postId) =>
   axios.post(`/posts/${postId}/appeal`, data);
+
+export const getAllAppealPost = () => axios.get("/posts/appealed");

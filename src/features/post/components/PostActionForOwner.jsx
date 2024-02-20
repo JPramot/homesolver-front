@@ -62,7 +62,7 @@ export default function PostActionForOwner({ post }) {
                   onClose={() => setOpenEditForm(false)}
                   width={45}
                 >
-                  <EditPostForm />
+                  <EditPostForm post={post} />
                 </Modal>
               )}
               <div

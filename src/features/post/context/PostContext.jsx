@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import * as postApi from "../../../apis/post";
+import * as appealApi from "../../../apis/appeal";
 
 export const PostContext = createContext();
 
@@ -8,6 +9,7 @@ export default function PostContextProvider({ children }) {
   const [allPost, setAllPost] = useState(null);
   const [loading, setLoading] = useState(false);
   const [postWithComment, setPostWithComment] = useState({});
+  const [allAppealPost, setAllAppealPost] = useState(null);
 
   const createPost = async (input) => {
     const res = await postApi.createPost(input);
@@ -30,7 +32,13 @@ export default function PostContextProvider({ children }) {
   };
 
   const appealPost = async (data, postId) => {
-    await postApi.appealPost(data, postId);
+    await appealApi.appealPost(data, postId);
+  };
+
+  const getAllAppealPost = async () => {
+    const res = await appealApi.getAllAppealPost();
+    setAllAppealPost(res.data.appealPost);
+    console.log(allAppealPost);
   };
 
   useEffect(() => {
@@ -52,7 +60,9 @@ export default function PostContextProvider({ children }) {
         getPostAndComment,
         appealPost,
         getAllPosts,
+        getAllAppealPost,
         allPost,
+        allAppealPost,
         postByUser,
         loading,
         postWithComment,

@@ -5,6 +5,7 @@ import UseAuth from "../../../hook/use-auth";
 import { toast } from "react-toastify";
 import UseComment from "../../../hook/use-comment";
 import UsePost from "../../../hook/use-post";
+import Spinner from "../../../components/Spinner";
 
 export default function CommentForm({ postId }) {
   const { authUser } = UseAuth();
@@ -13,11 +14,13 @@ export default function CommentForm({ postId }) {
 
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleComment = async () => {
     try {
       console.log(postId);
       if (input.trim() == "") return setError("please comment something");
+      setLoading(true);
       await createComment({ content: input }, postId);
       setInput("");
       await getPostAndComment(postId);
@@ -26,11 +29,14 @@ export default function CommentForm({ postId }) {
     } catch (err) {
       console.log(err);
       toast.error("comment fail");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
+      {loading && <Spinner />}
       <div>
         <textarea
           className="w-full rounded-lg resize-none outline-none focus:border-4 focus:border-[#A03232] p-3 mb-2"
