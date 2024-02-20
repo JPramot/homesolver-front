@@ -11,6 +11,7 @@ import ProtectAdminRoute from "../features/auth/components/ProtectAdminRoute";
 import LoginPage from "../pages/LoginPage";
 import RedirectIfNotAuthen from "../features/auth/components/RedirectIfNotAuthen";
 import PostByUser from "../pages/PostByUser";
+import OtherUserProfilePage from "../pages/OtherUserProfilePage";
 
 // const router = createBrowserRouter([
 //   {
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
             <UserPage />
           </ProtectRoute>
         ),
+      },
+      {
+        path: "/profile/:userId",
+        element: <OtherUserProfilePage />,
       },
 
       {

@@ -8,18 +8,16 @@ export default function Homepage() {
   return (
     <div>
       <div>
-        <div>
-          <h1>All Posts</h1>
-        </div>
-        <div className="bg-[#A03232] w-[70%] mx-auto rounded-lg p-5 my-4">
-          <PostList amount={page} />
-        </div>
-        <div
-          className="w-[80%] mx-auto text-right hover:text-[#A03232]"
-          role="button"
-        >
-          <h1 onClick={handleIncrease}>see more</h1>
-        </div>
+        <h1>All Posts</h1>
+      </div>
+      <div className="bg-[#A03232] w-[70%] mx-auto rounded-lg p-5 my-4">
+        <PostList amount={page} />
+      </div>
+      <div
+        className="w-[80%] mx-auto text-right hover:text-[#A03232]"
+        role="button"
+      >
+        <h1 onClick={handleIncrease}>see more</h1>
       </div>
     </div>
   );

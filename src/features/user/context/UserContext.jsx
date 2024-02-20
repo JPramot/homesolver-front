@@ -1,11 +1,28 @@
-import { createContext } from "react";
-import * as userApi from "../../../apis/user";
+import { createContext, useState } from "react";
+import * as banApi from "../../../apis/banned";
 
 export const UserContext = createContext();
 
 export default function UserContextProvider({ children }) {
-  const UpdateUserProfile = async (data) => {
-    const res = await userApi.UpdateUserProfile(data);
+  const [bannedUsers, setBannedUsers] = useState([]);
+
+  const bannedUser = async (userId) => {
+    await banApi.bannedUser(userId);
   };
-  return <UserContext.Provider value={{}}>{children}</UserContext.Provider>;
+
+  const unbannedUser = async (userId) => {
+    await banApi.unbannedUser(userId);
+  };
+
+  const getAllBannedUser = async () => {
+    const res = await banApi.getAllBannedUser();
+    setBannedUsers(res.data.bannedUser);
+  };
+  return (
+    <UserContext.Provider
+      value={{ bannedUser, getAllBannedUser, unbannedUser, bannedUsers }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
 }

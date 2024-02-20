@@ -39,6 +39,10 @@ export default function PostContextProvider({ children }) {
     setAllAppealPost(res.data.appealPost);
   };
 
+  const deleteAppealPost = async (appealPostId) => {
+    await appealApi.deleteAppealPost(appealPostId);
+  };
+
   const editPost = async (data, postId) => {
     const res = await postApi.editPost(data, postId);
     console.log(res?.data);
@@ -65,6 +69,7 @@ export default function PostContextProvider({ children }) {
         getAllPosts,
         getAllAppealPost,
         editPost,
+        deleteAppealPost,
         allPost,
         allAppealPost,
         postByUser,

@@ -8,6 +8,7 @@ import UsePost from "../hook/use-post";
 import { useEffect, useState } from "react";
 import CommentContextProvider from "../features/comment/context/CommentContext";
 import Spinner from "../components/Spinner";
+import BanForComment from "../features/comment/components/BanForComment";
 
 export default function PostPage() {
   const { authUser } = UseAuth();
@@ -36,14 +37,11 @@ export default function PostPage() {
     fetchPost();
   }, []);
 
-  // const handleComment = async(data)=>{
-  //   await createC
-  // }
-
+  console.log(authUser?.isBan);
   if (loading) return <Spinner />;
   return (
     <CommentContextProvider>
-      <div className="bg-gray-400 py-10">
+      <div className="bg-gray-400 py-10 min-h-[100vh]">
         <div className="w-[80%] mx-auto flex flex-col gap-10">
           <SelectedPost post={postWithComment} />
           <div className="text-2xl font-semibold">
@@ -53,7 +51,7 @@ export default function PostPage() {
           {postWithComment?.comments ? (
             <CommentList comment={postWithComment?.comments} />
           ) : null}
-          {authUser ? (
+          {authUser && authUser?.isBan == false ? (
             <div>
               <div className="text-2xl font-semibold">
                 <h1>Create comment</h1>
@@ -61,6 +59,8 @@ export default function PostPage() {
               <hr className="my-5" />
               <CommentForm postId={postId} />
             </div>
+          ) : authUser ? (
+            <BanForComment />
           ) : (
             <CantCommentForm />
           )}

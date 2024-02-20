@@ -35,7 +35,11 @@ export default function PostItem({ post, action }) {
               <Avartar size={3} src={post.user?.userProfile?.profileImage} />
             </div>
             <div>
-              <h1>{post?.user?.userProfile?.alias}</h1>
+              <Link to={`/profile/${post?.user?.id}`}>
+                <div>
+                  <h1>{post?.user?.userProfile?.alias || "Unknown"}</h1>
+                </div>
+              </Link>
               <h1>{formatTimeAgo(post?.createdAt)}</h1>
             </div>
           </div>

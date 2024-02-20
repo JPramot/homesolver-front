@@ -31,7 +31,7 @@ export default function AppealPostForm({ onClose, postId }) {
   return (
     <>
       {loading && <Spinner />}
-      {authUser ? (
+      {authUser && authUser?.isBan == false ? (
         <div>
           <div className="w-[90%] mx-auto my-2 ">
             <textarea
@@ -49,6 +49,11 @@ export default function AppealPostForm({ onClose, postId }) {
               Appeal
             </Button>
           </div>
+        </div>
+      ) : authUser ? (
+        <div className="text-[#A03232] text-center font-semibold text-2xl py-4">
+          <h1>You can't appeal post</h1>
+          <h1>Because you was banned by admin</h1>
         </div>
       ) : (
         <div className="text-center text-xl font-semibold my-4">

@@ -3,10 +3,14 @@ import AppealPostList from "../features/post/components/AppealPostList";
 import UseAuth from "../hook/use-auth";
 import UsePost from "../hook/use-post";
 import Spinner from "../components/Spinner";
+import BanUserList from "../features/user/components/BanUserList";
+import UserContextProvider from "../features/user/context/UserContext";
+import UseUser from "../hook/use-user";
 
 export default function AdminPage() {
   const { authUser } = UseAuth();
-  const { getAllAppealPost, AllAppealPost } = UsePost();
+  const { getAllBannedUser } = UseUser();
+  const { getAllAppealPost } = UsePost();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -14,6 +18,7 @@ export default function AdminPage() {
       try {
         setLoading(true);
         await getAllAppealPost();
+        await getAllBannedUser();
       } catch (err) {
         console.log(err);
       } finally {
@@ -22,10 +27,16 @@ export default function AdminPage() {
     };
     fetchAppealPost();
   }, []);
+
+  if (loading) return <Spinner />;
   return (
     <>
-      {loading && <Spinner />}
-      <AppealPostList />
+      {/* <UserContextProvider> */}
+      <div className="flex flex-col gap-8 my-5">
+        <AppealPostList />
+        <BanUserList />
+      </div>
+      {/* </UserContextProvider> */}
     </>
   );
 }
