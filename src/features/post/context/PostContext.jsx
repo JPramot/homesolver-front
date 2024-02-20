@@ -14,7 +14,6 @@ export default function PostContextProvider({ children }) {
   const createPost = async (input) => {
     const res = await postApi.createPost(input);
     setPostByUser(res.data.post);
-    setAllPost([postByUser, ...allPost]);
   };
 
   const getAllPosts = async () => {
@@ -38,7 +37,6 @@ export default function PostContextProvider({ children }) {
   const getAllAppealPost = async () => {
     const res = await appealApi.getAllAppealPost();
     setAllAppealPost(res.data.appealPost);
-    console.log(allAppealPost);
   };
 
   const editPost = async (data, postId) => {
