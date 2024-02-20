@@ -25,9 +25,9 @@ export default function PostActionForOwner({ post }) {
     }
   }, [openDropdown]);
 
-  // const handleCloseDropdown = () => {
-  //   setOpenDropdown(false);
-  // };
+  const handleCloseDropdown = () => {
+    setOpenDropdown(false);
+  };
 
   const handleDeletePost = async () => {
     try {
@@ -62,7 +62,12 @@ export default function PostActionForOwner({ post }) {
                   onClose={() => setOpenEditForm(false)}
                   width={45}
                 >
-                  <EditPostForm post={post} />
+                  <EditPostForm
+                    post={post}
+                    onClose={() => (
+                      setOpenDropdown(false), setOpenEditForm(false)
+                    )}
+                  />
                 </Modal>
               )}
               <div
@@ -77,6 +82,7 @@ export default function PostActionForOwner({ post }) {
                   bg="main"
                   color="main"
                   title="Do you sure to delete this post?"
+                  width={40}
                   onClose={() => setOpenDeleteForm(false)}
                 >
                   <DeletePostForm

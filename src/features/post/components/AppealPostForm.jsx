@@ -51,7 +51,7 @@ export default function AppealPostForm({ onClose, postId }) {
           </div>
         </div>
       ) : (
-        <div className="text-center text-xl font-semibold">
+        <div className="text-center text-xl font-semibold my-4">
           <h1>Please Log in for appeal post</h1>
           <Link to="/login">
             <div className="w-[80%] mx-auto my-6 text-lg ">

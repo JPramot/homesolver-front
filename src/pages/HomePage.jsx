@@ -11,7 +11,7 @@ export default function Homepage() {
         <div>
           <h1>All Posts</h1>
         </div>
-        <div className="bg-[#A03232] w-[70%] mx-auto rounded-lg p-5">
+        <div className="bg-[#A03232] w-[70%] mx-auto rounded-lg p-5 my-4">
           <PostList amount={page} />
         </div>
         <div

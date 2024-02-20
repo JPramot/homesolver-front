@@ -27,7 +27,7 @@ function SelectedPost({ post }) {
           {openModal && (
             <Modal
               title="What wrong with this post?"
-              width={30}
+              width={35}
               onClose={() => setOpenModal(false)}
               color="main"
             >

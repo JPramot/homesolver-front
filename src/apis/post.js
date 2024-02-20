@@ -9,7 +9,5 @@ export const deletePost = (postId) => axios.delete(`/posts/${postId}`);
 export const getPostWithComment = (postId) =>
   axios.get(`/posts/${postId}/comment`);
 
-export const appealPost = (data, postId) =>
-  axios.post(`/posts/${postId}/appeal`, data);
-
-export const getAllAppealPost = () => axios.get("/posts/appealed");
+export const editPost = (data, postId) =>
+  axios.patch(`/posts/${postId}/`, data);

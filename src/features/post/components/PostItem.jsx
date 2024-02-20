@@ -11,7 +11,6 @@ export default function PostItem({ post, action }) {
   const handleGetPostWithComment = async () => {
     await getPostAndComment(post.id);
   };
-  console.log(post);
 
   return (
     <div className="w-[90%] bg-white mx-auto rounded-md">

@@ -41,6 +41,11 @@ export default function PostContextProvider({ children }) {
     console.log(allAppealPost);
   };
 
+  const editPost = async (data, postId) => {
+    const res = await postApi.editPost(data, postId);
+    console.log(res?.data);
+  };
+
   useEffect(() => {
     try {
       setLoading(true);
@@ -61,6 +66,7 @@ export default function PostContextProvider({ children }) {
         appealPost,
         getAllPosts,
         getAllAppealPost,
+        editPost,
         allPost,
         allAppealPost,
         postByUser,
