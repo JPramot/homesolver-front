@@ -7,8 +7,10 @@ import UseAuth from "../../../hook/use-auth";
 import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner";
 import isUserProfileChange from "../validations/validate-userProfileChange";
+import UsePost from "../../../hook/use-post";
 
 export default function UserProfile() {
+  const { getAllPosts } = UsePost();
   const {
     authUser: { userProfile, username },
     updateUserProfile,
@@ -64,7 +66,7 @@ export default function UserProfile() {
         setErrorInput("Please fill at least one of your profile infomation");
       }
       if (!isUserProfileChange(userProfile, input) && !image)
-        return toast.error("no profile data change");
+        return toast.error("no data change");
       const formData = new FormData();
       if (input.firstName) formData.append("firstName", input.firstName);
       if (input.lastName) formData.append("lastName", input.lastName);
@@ -76,7 +78,7 @@ export default function UserProfile() {
       if (image) formData.append("profileImage", image);
       setLoading(true);
       await updateUserProfile(formData);
-
+      await getAllPosts();
       toast.success("update profile success");
     } catch (err) {
       toast.error("update fail");

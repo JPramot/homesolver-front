@@ -11,6 +11,7 @@ function SelectedPost({ post }) {
 
   const dropdownEl = useRef(null);
 
+  console.log(post);
   return (
     <div
       className=" bg-white border-2 border-[#A03232] px-10 py-6 flex flex-col gap-3 rounded-lg "
@@ -46,7 +47,7 @@ function SelectedPost({ post }) {
 
       <div className=" ">
         <div className="flex items-center gap-4">
-          <Avartar size="4" />
+          <Avartar size="4" src={post?.user?.userProfile?.profileImage} />
           <div>
             <h1>{post?.user?.userProfile?.alias || "Unknown"}</h1>
             <h1>{formatTimeAgo(post?.createdAt)}</h1>

@@ -5,6 +5,6 @@ export default function OtherUserProfilePage() {
   const { authUser } = UseAuth();
   const { userId } = useParams();
 
-  if (authUser.id == userId) return <Navigate to={`/profile/me/${userId}`} />;
+  if (authUser.id == userId) return <Navigate to={`/post/me/${userId}`} />;
   return <div>OtherUserProfilePage</div>;
 }
