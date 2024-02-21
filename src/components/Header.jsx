@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import Modal from "./Modal";
+import SearchContainer from "./SearchContainer";
 
 export default function Header({ children }) {
   return (
@@ -12,9 +13,7 @@ export default function Header({ children }) {
             <h1 className="text-right">Solver</h1>
           </div>
         </Link>
-        <div>
-          <input className="w-96 p-1" type="text" />
-        </div>
+        <SearchContainer />
       </div>
       <div className="flex gap-10">{children}</div>
     </div>

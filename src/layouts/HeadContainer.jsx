@@ -12,7 +12,6 @@ import AdminContainer from "./AdminContainer";
 
 export default function HeadContainer() {
   const { authUser } = UseAuth();
-  const [open, setOpen] = useState(false);
   return (
     <div>
       <Header>
