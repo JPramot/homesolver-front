@@ -6,7 +6,7 @@ export default function BanUserList() {
 
   return (
     <div>
-      <div className="text-2xl font-semibold my-6 ml-[15%] text-[#A03223]">
+      <div className="text-2xl font-semibold my-6 ml-[15%] text-[#A03223] bg-white w-[200px] text-center p-2 rounded-md">
         <h1>Banned User</h1>
       </div>
       <div className="bg-[#A03232] w-[70%] mx-auto rounded-lg py-8 max-h-[700px] overflow-auto">

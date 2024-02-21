@@ -22,6 +22,7 @@ export default function PostPage() {
   const { postId } = useParams();
 
   const [loading, setLoading] = useState(false);
+  // const[post,setPost] =useState(postId)
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -35,7 +36,7 @@ export default function PostPage() {
       }
     };
     fetchPost();
-  }, []);
+  }, [postId]);
 
   console.log(authUser?.isBan);
   if (loading) return <Spinner />;

@@ -18,6 +18,7 @@ export default function UserProfile() {
   const newInput = { ...userProfile };
   const profileImg = newInput.profileImage;
   delete newInput.profileImage;
+  console.log(newInput);
   for (const key in newInput) {
     if (newInput.hasOwnProperty(key) && newInput[key] === null) {
       newInput[key] = "";
@@ -28,6 +29,7 @@ export default function UserProfile() {
     const indexOfT = dateString.indexOf("T");
     newInput.birthDate = dateString.substring(0, indexOfT);
   }
+  console.log(newInput);
   const [input, setInput] = useState(
     JSON.stringify(newInput) !== "{}"
       ? newInput
@@ -40,12 +42,14 @@ export default function UserProfile() {
           gender: "",
         }
   );
+  console.log(input.birthDate === newInput.birthDate);
   const [image, setImage] = useState(null);
   const [errorInput, setErrorInput] = useState("");
   const [loading, setLoading] = useState(false);
   const fileImageEl = useRef(null);
 
   const handleOnchange = (e) => {
+    setErrorInput("");
     setInput((cur) => ({ ...cur, [e.target.name]: e.target.value }));
   };
 
@@ -63,9 +67,13 @@ export default function UserProfile() {
         !input.gender &&
         !image
       ) {
-        setErrorInput("Please fill at least one of your profile infomation");
+        return setErrorInput(
+          "Please fill at least one of your profile infomation"
+        );
       }
-      if (!isUserProfileChange(userProfile, input) && !image)
+      console.log(isUserProfileChange(userProfile, input));
+      console.log(image);
+      if (!isUserProfileChange(newInput, input) && !image)
         return toast.error("no data change");
       const formData = new FormData();
       if (input.firstName) formData.append("firstName", input.firstName);
@@ -200,7 +208,7 @@ export default function UserProfile() {
                 ></textarea>
               </div>
               {errorInput && (
-                <small className="text-red-500">{errorInput}</small>
+                <small className="text-red-500 mx-[10%]">{errorInput}</small>
               )}
               <div className="w-[80%] mx-auto flex justify-end my-4 gap-4">
                 <Button bg="second" type="submit">

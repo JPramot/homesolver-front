@@ -20,7 +20,7 @@ export default function SearchBar({ setResult }) {
     filter(value);
   };
   return (
-    <div className="bg-white w-[100%] border-r-[2px] h-[35px] py-1 shadow-[0_0_2px_#ddd] flex items-center">
+    <div className="bg-white w-[100%] h-[35px] py-1 shadow-[0_0_2px_#ddd] flex items-center">
       <FaSearch className="mx-2" />
       <input
         className="bg-transparent border-none h-[100%] w-[100%] ml-1.5 focus:outline-none "

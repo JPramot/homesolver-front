@@ -129,6 +129,10 @@ const router = createBrowserRouter([
         path: "/post/:postId/comment",
         element: <PostPage />,
       },
+      {
+        path: "/user/profile/:userId",
+        element: <OtherUserProfilePage />,
+      },
     ],
   },
   {

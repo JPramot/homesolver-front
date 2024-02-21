@@ -10,7 +10,7 @@ import Spinner from "../../../components/Spinner";
 
 export default function CommentItem({ comment, idx }) {
   const { authUser } = UseAuth();
-  const { getPostAndComment } = UsePost();
+  const { getPostAndComment, getAllPosts } = UsePost();
   const { deleteComment } = UseComment();
 
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -40,8 +40,9 @@ export default function CommentItem({ comment, idx }) {
         return toast.error("you can't delete this comment");
       setLoading(true);
       await deleteComment(comment.id, comment.postId);
-      toast.success("delete success");
       await getPostAndComment(comment.postId);
+      await getAllPosts();
+      toast.success("delete success");
     } catch (err) {
       console.log(err);
       toast.error("delete fail");

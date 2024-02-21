@@ -5,6 +5,7 @@ import formatTimeAgo from "../../../utilitys/time-ago";
 import { useEffect, useRef, useState } from "react";
 import Modal from "../../../components/Modal";
 import AppealPostForm from "./AppealPostForm";
+import { Link } from "react-router-dom";
 
 function SelectedPost({ post }) {
   const [openModal, setOpenModal] = useState(false);
@@ -45,11 +46,13 @@ function SelectedPost({ post }) {
       </div>
       <ImageList />
 
-      <div className=" ">
+      <div>
         <div className="flex items-center gap-4">
           <Avartar size="4" src={post?.user?.userProfile?.profileImage} />
           <div>
-            <h1>{post?.user?.userProfile?.alias || "Unknown"}</h1>
+            <Link to={`/user/profile/${post?.userId}`}>
+              <h1>{post?.user?.userProfile?.alias || "Unknown"}</h1>
+            </Link>
             <h1>{formatTimeAgo(post?.createdAt)}</h1>
           </div>
         </div>
