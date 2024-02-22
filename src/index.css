@@ -3,6 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  background-color: #fbf7f7;
+  background-color: rgb(156, 163, 175);
   font-family: "Poppins", sans-serif;
 }

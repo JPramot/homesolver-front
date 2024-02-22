@@ -6,7 +6,7 @@ export default function Homepage() {
     setPage((cur) => cur + 10);
   };
   return (
-    <div className="bg-gray-400 min-h-full py-8">
+    <div className="bg-gray-400 min-h-[200vh] py-8">
       <div className="text-2xl font-semibold bg-gray-100 w-[200px] text-center text-[#A03232] mx-[15%] py-2 rounded-lg">
         <h1>All Posts</h1>
       </div>

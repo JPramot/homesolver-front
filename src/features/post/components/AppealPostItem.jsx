@@ -14,6 +14,8 @@ export default function AppealPostItem({ appealPost }) {
 
   const [loading, setLoading] = useState(false);
 
+  console.log(appealPost);
+
   const handleDeletePost = async () => {
     try {
       if (authUser.role !== "admin") return toast.error("You're not admin");
@@ -47,6 +49,8 @@ export default function AppealPostItem({ appealPost }) {
   const handleBannedUser = async () => {
     try {
       if (authUser.role != "admin") return toast.error("You're not admin");
+      if (appealPost?.post?.userId?.isBan == true)
+        return toast.error("User already banned");
       await bannedUser(appealPost?.post?.userId);
       setLoading(true);
       toast.success("User was banned");
