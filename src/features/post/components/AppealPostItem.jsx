@@ -14,8 +14,6 @@ export default function AppealPostItem({ appealPost }) {
 
   const [loading, setLoading] = useState(false);
 
-  console.log(appealPost);
-
   const handleDeletePost = async () => {
     try {
       if (authUser.role !== "admin") return toast.error("You're not admin");

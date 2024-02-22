@@ -25,12 +25,10 @@ export default function PostForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     try {
-      console.log(image);
       e.preventDefault();
 
       const validateInputError = validatePost(input);
       if (validateInputError) return setError(validateInputError);
-      console.log(image?.length);
       if (image?.length > 5)
         return setError((cur) => ({
           ...cur,
@@ -44,7 +42,6 @@ export default function PostForm({ onClose }) {
           formData.append("image", file);
         });
       }
-      console.log(image);
       setLoading(true);
       await createPost(formData);
       toast.success("post success");
@@ -54,7 +51,6 @@ export default function PostForm({ onClose }) {
       console.log(err);
       toast.error("post fail");
     } finally {
-      console.log("end");
       setLoading(false);
       onClose();
     }
@@ -79,7 +75,7 @@ export default function PostForm({ onClose }) {
             value={input.content}
             onChange={handleOnchange}
             rows="15"
-            className="w-full overflow-auto outline-none resize-none border-gray-300 focus:border-blue-500 focus:ring-blue-300 focus:outline-none border  rounded-md  focus:ring-2"
+            className="w-full overflow-auto outline-none resize-none border-gray-300 focus:border-blue-500 focus:ring-blue-300 focus:outline-none border  rounded-md  focus:ring-2 p-2"
           />
           {error.content && (
             <small className="text-red-500">{error.content}</small>
