@@ -32,7 +32,7 @@ export default function OtherUserProfilePage() {
   if (loading) return <Spinner />;
   return (
     <div className="bg-gray-400 w-[100vw] min-h-[100vh] py-8">
-      <div className="w-[80%] mx-auto bg-[#A03232] rounded-lg pt-4">
+      <div className="w-[70%] mx-auto bg-[#A03232] rounded-lg pt-4">
         <div className="mt-5">
           <div className="w-[300px] bg-white mx-[7%] text-[#A03232] font-semibold text-2xl p-2 rounded-lg text-center">
             <h1>{userProfileAndPost?.alias || "Unknown"} profile</h1>
