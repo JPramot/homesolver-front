@@ -4,7 +4,6 @@ import Avartar from "../components/Avartar";
 import UseUser from "../hook/use-user";
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
-import PostItem from "../features/post/components/PostItem";
 import OtherUserPostItem from "../features/post/components/OtherUserPostItem";
 
 export default function OtherUserProfilePage() {
@@ -13,7 +12,6 @@ export default function OtherUserProfilePage() {
   const { userId } = useParams();
 
   const [loading, setLoading] = useState(false);
-  console.log(userProfileAndPost);
 
   useEffect(() => {
     const fetchUserProfile = async () => {

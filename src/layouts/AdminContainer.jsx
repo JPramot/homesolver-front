@@ -1,4 +1,3 @@
-import PostContainer from "../features/post/components/PostContainer";
 import UserDropDown from "../features/user/components/UserDropDown";
 import UseAuth from "../hook/use-auth";
 import Dropdown from "./Dropdown";
@@ -9,7 +8,6 @@ export default function UserContainer() {
   } = UseAuth();
   return (
     <>
-      {/* <PostContainer /> */}
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-xl text-white ">Hello</h1>
         <h1 className="text-xl text-white ">{username}</h1>

@@ -1,11 +1,6 @@
-import { useState } from "react";
-import Avartar from "../components/Avartar";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import { Link, Outlet } from "react-router-dom";
-// import Modal from "../components/Modal";
-// import PostContainer from "../features/post/components/PostContainer";
-// import Dropdown from "./Dropdown";
 import UseAuth from "../hook/use-auth";
 import UserContainer from "./UserContainer";
 import AdminContainer from "./AdminContainer";
