@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import AppealPostList from "../features/post/components/AppealPostList";
-import UseAuth from "../hook/use-auth";
 import UsePost from "../hook/use-post";
 import Spinner from "../components/Spinner";
 import BanUserList from "../features/user/components/BanUserList";
-import UserContextProvider from "../features/user/context/UserContext";
 import UseUser from "../hook/use-user";
 
 export default function AdminPage() {
-  const { authUser } = UseAuth();
   const { getAllBannedUser } = UseUser();
   const { getAllAppealPost } = UsePost();
   const [loading, setLoading] = useState(false);

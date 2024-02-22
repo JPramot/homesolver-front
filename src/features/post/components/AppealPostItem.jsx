@@ -66,14 +66,24 @@ export default function AppealPostItem({ appealPost }) {
         <div className="flex gap-3">
           <h1>Post</h1>
           <Link to={`/post/${appealPost.postId}/comment`}>
-            <h1 className="font-semibold hover:text-[#a03232d5]">
+            <h1 className="font-semibold hover:text-[#b84b4bd5]">
               {appealPost?.post?.title}
             </h1>
           </Link>
+          <h1> by </h1>
+          <Link to={`/user/profile/${appealPost?.post?.userId}`}>
+            <h1 className="font-semibold hover:text-[#b84b4bd5]">
+              {appealPost?.post?.user?.username}
+            </h1>
+          </Link>
+        </div>
+        <div className="flex gap-3">
           <h1>was appealed by</h1>
-          <h1 className="font-semibold">
-            {appealPost?.user?.userProfile?.alias}
-          </h1>
+          <Link to={`/user/profile/${appealPost?.userId}`}>
+            <h1 className="font-semibold hover:text-[#b84b4bd5]">
+              {appealPost?.user?.username || "Unknown"}
+            </h1>
+          </Link>
         </div>
         <div>{appealPost?.content}</div>
         <div className="flex text-lg gap-4 justify-end">

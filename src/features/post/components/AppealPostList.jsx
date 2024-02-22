@@ -15,7 +15,7 @@ export default function AppealPostList() {
           ))
         ) : (
           <div className="w-[90%] bg-white mx-auto rounded-md px-5 text-[#A03232] text-2xl font-semibold py-3 my-6 text-center">
-            <h1>No appeal post now</h1>
+            <h1>No appealed post now</h1>
           </div>
         )}
       </div>

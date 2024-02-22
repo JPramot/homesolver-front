@@ -7,6 +7,7 @@ import validatePost from "../validations/validate-post";
 import UsePost from "../../../hook/use-post";
 import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner";
+import { isPostChange } from "../validations/validate-postchange";
 
 export default function EditPostForm({ post, onClose }) {
   const { editPost, getAllPosts } = UsePost();
@@ -22,6 +23,8 @@ export default function EditPostForm({ post, onClose }) {
 
   const fileImageEl = useRef(null);
 
+  const countPostImage = post?.postImages?.length;
+
   const handleOnchange = (e) => {
     setInput((cur) => ({ ...cur, [e.target.name]: e.target.value }));
   };
@@ -34,8 +37,14 @@ export default function EditPostForm({ post, onClose }) {
     try {
       e.preventDefault();
       const validateInputError = validatePost(input);
+      if (
+        !isPostChange(post, input) &&
+        post?.postImages?.length == countPostImage &&
+        !image
+      )
+        return toast.error("Please change some post data");
       if (validateInputError) return setError(validateInputError);
-      if (image?.length + post?.postImages.length - deletedImage?.length > 5)
+      if (image?.length + post?.postImages?.length - deletedImage?.length > 5)
         return setError((cur) => ({
           ...cur,
           image: "the maximum of images are 5",
@@ -43,7 +52,8 @@ export default function EditPostForm({ post, onClose }) {
       const formData = new FormData();
       if (input.title) formData.append("title", input.title);
       if (input.content) formData.append("content", input.content);
-      if (deletedImage.length > 0) formData.append("deleteImage", deletedImage);
+      if (deletedImage?.length > 0)
+        formData.append("deleteImage", deletedImage);
       if (image?.length > 0) {
         [...image].forEach((file) => {
           formData.append("image", file);

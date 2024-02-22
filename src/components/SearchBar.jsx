@@ -12,7 +12,6 @@ export default function SearchBar({ setResult }) {
       return post.title.toLowerCase().includes(value);
     });
     setResult(result);
-    console.log(result);
   };
 
   const handleOnchange = (value) => {

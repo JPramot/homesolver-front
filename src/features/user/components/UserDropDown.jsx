@@ -9,7 +9,7 @@ export default function UserDropDown() {
     authUser: { id },
   } = UseAuth();
   return (
-    <>
+    <div>
       <Link to={`/profile/me/${id}`}>
         <div
           className="flex  text-center gap-3 hover:bg-[#EDEDED] px-3 py-1.5 w-full mx-auto hover:text-[#A03232]"
@@ -29,6 +29,6 @@ export default function UserDropDown() {
         </div>
       </Link>
       <SignOutContainer />
-    </>
+    </div>
   );
 }

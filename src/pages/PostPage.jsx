@@ -13,16 +13,10 @@ import BanForComment from "../features/comment/components/BanForComment";
 export default function PostPage() {
   const { authUser } = UseAuth();
   const { postWithComment, getPostAndComment } = UsePost();
-  console.log(postWithComment);
-  // const {
-  //   postWithComment: { title, content, createdAt, comment, postImage },
-  //   getPostAndComment,
-  // } = UsePost();
 
   const { postId } = useParams();
 
   const [loading, setLoading] = useState(false);
-  // const[post,setPost] =useState(postId)
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -38,7 +32,6 @@ export default function PostPage() {
     fetchPost();
   }, [postId]);
 
-  console.log(authUser?.isBan);
   if (loading) return <Spinner />;
   return (
     <CommentContextProvider>

@@ -9,7 +9,7 @@ export default function UserContainer() {
   } = UseAuth();
   return (
     <>
-      <PostContainer />
+      {/* <PostContainer /> */}
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-xl text-white ">Hello</h1>
         <h1 className="text-xl text-white ">{username}</h1>

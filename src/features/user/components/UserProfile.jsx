@@ -12,13 +12,12 @@ import UsePost from "../../../hook/use-post";
 export default function UserProfile() {
   const { getAllPosts } = UsePost();
   const {
-    authUser: { userProfile, username },
+    authUser: { userProfile, username, email },
     updateUserProfile,
   } = UseAuth();
   const newInput = { ...userProfile };
   const profileImg = newInput.profileImage;
   delete newInput.profileImage;
-  console.log(newInput);
   for (const key in newInput) {
     if (newInput.hasOwnProperty(key) && newInput[key] === null) {
       newInput[key] = "";
@@ -29,7 +28,6 @@ export default function UserProfile() {
     const indexOfT = dateString.indexOf("T");
     newInput.birthDate = dateString.substring(0, indexOfT);
   }
-  console.log(newInput);
   const [input, setInput] = useState(
     JSON.stringify(newInput) !== "{}"
       ? newInput
@@ -42,7 +40,6 @@ export default function UserProfile() {
           gender: "",
         }
   );
-  console.log(input.birthDate === newInput.birthDate);
   const [image, setImage] = useState(null);
   const [errorInput, setErrorInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -56,8 +53,6 @@ export default function UserProfile() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log(userProfile);
-      console.log(input);
       if (
         !input.firstName &&
         !input.lastName &&
@@ -71,8 +66,6 @@ export default function UserProfile() {
           "Please fill at least one of your profile infomation"
         );
       }
-      console.log(isUserProfileChange(userProfile, input));
-      console.log(image);
       if (!isUserProfileChange(newInput, input) && !image)
         return toast.error("no data change");
       const formData = new FormData();
@@ -93,12 +86,13 @@ export default function UserProfile() {
       console.log(err);
     } finally {
       setLoading(false);
+      setImage(null);
     }
   };
-  const handleCancel = (e) => {
-    e.stopPropagation();
+  const handleCancel = () => {
     setImage(null);
     setInput(newInput);
+    setErrorInput("");
   };
   return (
     <>
@@ -123,9 +117,9 @@ export default function UserProfile() {
               </div>
             </div>
             <div className="bg-[#EEEEEE] flex-1 rounded-lg p-4">
-              <div>
-                <h1>username</h1>
-                <h1>email</h1>
+              <div className="flex flex-col gap-3">
+                <h1>username: {username}</h1>
+                <h1>email: {email}</h1>
               </div>
             </div>
           </div>

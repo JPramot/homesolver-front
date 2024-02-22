@@ -16,6 +16,8 @@ export default function AppealPostForm({ onClose, postId }) {
   const handleAppealPost = async () => {
     try {
       if (!input) return setError("You should tell some reason");
+      if (authUser?.role === "admin")
+        return toast.error("Admin can't appeal post");
       setLoading(true);
       await appealPost({ content: input }, postId);
       onClose();

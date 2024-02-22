@@ -33,8 +33,8 @@ export default function OtherUserProfilePage() {
 
   if (loading) return <Spinner />;
   return (
-    <div className="bg-gray-400 w-[100vw] min-h-[100vh] absolute">
-      <div className="w-[80%] mx-auto bg-[#A03232] rounded-lg pt-4 mt-8">
+    <div className="bg-gray-400 w-[100vw] min-h-[100vh] py-8">
+      <div className="w-[80%] mx-auto bg-[#A03232] rounded-lg pt-4">
         <div className="mt-5">
           <div className="w-[300px] bg-white mx-[7%] text-[#A03232] font-semibold text-2xl p-2 rounded-lg text-center">
             <h1>{userProfileAndPost?.alias || "Unknown"} profile</h1>
@@ -42,9 +42,10 @@ export default function OtherUserProfilePage() {
           <div className="flex w-[80%] mx-auto my-4 gap-5 py-8 ">
             <Avartar size={10} src={userProfileAndPost?.profileImage} />
             <div className="w-[300px] bg-gray-100 rounded-lg flex-1 p-3 text-lg">
+              <h1>username: {userProfileAndPost?.user?.username}</h1>
               <h1>alias: {userProfileAndPost?.alias || "-"}</h1>
               <h1>introduction: {userProfileAndPost?.introduction || "-"}</h1>
-              <h1>gender:{userProfileAndPost?.gender || "-"}</h1>
+              <h1>gender: {userProfileAndPost?.gender || "-"}</h1>
             </div>
           </div>
         </div>

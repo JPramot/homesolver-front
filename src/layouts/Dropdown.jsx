@@ -35,7 +35,7 @@ export default function Dropdown({ children }) {
       {openDropdown ? (
         <div className="absolute right-0 translate-y-2 ">
           <div
-            className="w-52  bg-white shadow-[0_0_6px_rgb(0,0,0,0.2)] p-2 rounded-lg"
+            className="w-52  bg-white shadow-[0_0_6px_rgb(0,0,0,0.2)] p-2 rounded-lg z-20"
             onClick={handleCloseDropdown}
           >
             {children}
