@@ -24,7 +24,6 @@ export default function UserContextProvider({ children }) {
   const getUserProfileAndAllPost = async (userId) => {
     const res = await userApi.getUserProfileAndPost(userId);
     setUserProfileAndPost(res.data.userProfile);
-    console.log(res.data.userProfile);
   };
   return (
     <UserContext.Provider

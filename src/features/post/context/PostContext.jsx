@@ -44,8 +44,7 @@ export default function PostContextProvider({ children }) {
   };
 
   const editPost = async (data, postId) => {
-    const res = await postApi.editPost(data, postId);
-    console.log(res?.data);
+    await postApi.editPost(data, postId);
   };
 
   useEffect(() => {
