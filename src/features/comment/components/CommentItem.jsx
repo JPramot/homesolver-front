@@ -31,8 +31,6 @@ export default function CommentItem({ comment, idx }) {
 
   const handleDelete = async () => {
     try {
-      console.log(comment);
-      console.log(authUser);
       if (
         comment?.user?.id !== authUser?.id &&
         authUser?.id !== comment?.post?.userId

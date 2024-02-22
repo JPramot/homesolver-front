@@ -1,14 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import * as commentApi from "../../../apis/comment";
 
 export const CommentContext = createContext();
 
 export default function CommentContextProvider({ children }) {
-  const [commentByUser, setCommentByUser] = useState(null);
-
   const createComment = async (data, postId) => {
-    const res = await commentApi.createComment(data, postId);
-    setCommentByUser(res.data.comment);
+    await commentApi.createComment(data, postId);
   };
 
   const deleteComment = async (commentId, postId) => {
@@ -16,9 +13,7 @@ export default function CommentContextProvider({ children }) {
   };
 
   return (
-    <CommentContext.Provider
-      value={{ createComment, deleteComment, commentByUser }}
-    >
+    <CommentContext.Provider value={{ createComment, deleteComment }}>
       {children}
     </CommentContext.Provider>
   );

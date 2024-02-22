@@ -18,7 +18,6 @@ export default function CommentForm({ postId }) {
 
   const handleComment = async () => {
     try {
-      console.log(postId);
       if (input.trim() == "") return setError("please comment something");
       setLoading(true);
       await createComment({ content: input }, postId);
