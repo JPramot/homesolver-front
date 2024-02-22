@@ -5,7 +5,7 @@ import validateLogin from "../validations/validate-login";
 import UseAuth from "../../../hook/use-auth";
 import { toast } from "react-toastify";
 
-export default function SignInForm({ closeModal }) {
+export default function SignInForm() {
   const [input, setInput] = useState({ username: "", password: "" });
   const [error, setError] = useState({});
 
@@ -19,10 +19,8 @@ export default function SignInForm({ closeModal }) {
       e.preventDefault();
       const validateLoginError = validateLogin(input);
       if (validateLoginError) return setError(validateLoginError);
-      const res = await login(input);
-      console.log(res);
+      await login(input);
       toast.success("login success");
-      // closeModal();
     } catch (err) {
       console.log(err);
       toast.error(err?.response.data.message);

@@ -25,7 +25,6 @@ export default function AuthContextProvider({ children }) {
       setLoading(false);
     }
   }, []);
-  console.log(authUser);
 
   const register = async (userData) => {
     const res = await authApi.register(userData);

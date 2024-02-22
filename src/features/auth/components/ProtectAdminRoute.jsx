@@ -5,9 +5,7 @@ import { getToken } from "../../../utilitys/local-storage";
 
 export default function ProtectAdminRoute({ children }) {
   const { authUser } = UseAuth();
-  console.log("test", authUser);
   if (getToken()) {
-    console.log(authUser);
     if (authUser && authUser?.role !== "admin") return <Navigate to="/home" />;
     return children;
   }

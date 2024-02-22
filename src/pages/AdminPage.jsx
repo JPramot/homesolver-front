@@ -27,7 +27,7 @@ export default function AdminPage() {
 
   if (loading) return <Spinner />;
   return (
-    <div className="bg-gray-400 min-h-full py-8">
+    <div className="bg-gray-400 min-h-full py-4">
       <div className="flex flex-col gap-8 my-5">
         <AppealPostList />
         <BanUserList />
