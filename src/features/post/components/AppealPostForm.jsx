@@ -9,6 +9,7 @@ import Spinner from "../../../components/Spinner";
 export default function AppealPostForm({ onClose, postId }) {
   const { authUser } = UseAuth();
   const { appealPost } = UsePost();
+
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);

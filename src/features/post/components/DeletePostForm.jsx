@@ -1,8 +1,6 @@
 import Button from "../../../components/Button";
-import UsePost from "../../../hook/use-post";
 
 export default function DeletePostForm({ onClose, onDelete }) {
-  //   const { deletePost } = UsePost();
   const handleYesButton = () => {
     onDelete();
     onClose();

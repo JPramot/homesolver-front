@@ -3,7 +3,6 @@ import UsePost from "../../../hook/use-post";
 
 export default function PostList({ amount, userId, action }) {
   const { allPost } = UsePost();
-  console.log(allPost);
   const seePost = allPost?.filter((el, idx) => {
     if (userId) {
       return idx < amount && el.userId == userId;

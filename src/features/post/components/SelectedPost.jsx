@@ -2,7 +2,7 @@ import { BsBan } from "react-icons/bs";
 import Avartar from "../../../components/Avartar";
 import ImageList from "./ImageList";
 import formatTimeAgo from "../../../utilitys/time-ago";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Modal from "../../../components/Modal";
 import AppealPostForm from "./AppealPostForm";
 import { Link } from "react-router-dom";
@@ -12,7 +12,6 @@ function SelectedPost({ post }) {
 
   const dropdownEl = useRef(null);
 
-  console.log(post);
   return (
     <div
       className=" bg-white border-2 border-[#A03232] px-10 py-6 flex flex-col gap-3 rounded-lg "

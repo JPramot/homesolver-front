@@ -36,13 +36,13 @@ export default function EditPostForm({ post, onClose }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const validateInputError = validatePost(input);
       if (
         !isPostChange(post, input) &&
-        post?.postImages?.length == countPostImage &&
+        deletedImage?.length == countPostImage &&
         !image
       )
         return toast.error("Please change some post data");
+      const validateInputError = validatePost(input);
       if (validateInputError) return setError(validateInputError);
       if (image?.length + post?.postImages?.length - deletedImage?.length > 5)
         return setError((cur) => ({
