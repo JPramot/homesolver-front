@@ -31,7 +31,6 @@ export default function AuthContextProvider({ children }) {
     setAuthUser(res.data.user);
     localStorage.storeToken(res.data.token);
   };
-
   const login = async (userData) => {
     const res = await authApi.login(userData);
     setAuthUser(res.data.user);
